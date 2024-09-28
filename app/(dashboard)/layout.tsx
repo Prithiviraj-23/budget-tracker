@@ -1,11 +1,12 @@
-import React from 'react'
 
-function layout({childern}:{childern:React.ReactNode}) {
+import React, { ReactNode } from "react";
+import NavBar from "@/components/Navbar";
+function layout({ children }: { children: ReactNode }) {
   return (
-	<div className='relative flex h-screen w-full flex flex-col'>
-	  <div className='w-full'>{childern}</div>
-	</div>
-  )
+    <div className="relative flex h-screen w-full flex-col">
+      <NavBar />
+      <div className="w-full">{children}</div>
+    </div>
+  );
 }
-
-export default layout
+export default layout;
