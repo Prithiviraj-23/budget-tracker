@@ -3,31 +3,30 @@ import { currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function GET(request:Request) {
+export async function GET(request: Request) {
+  const user = await currentUser();
 
+  if (!user) redirect("/sign-in");
 
-	const  user =await currentUser();
+  let userSettings = await prisma.userSetting.findUnique({
+    where: {
+      userId: user.id,
+    },
+  });
 
-	if(!user)redirect("/sign-in");
+  if (!userSettings) {
+    userSettings = await prisma.userSetting.create({
+      data: {
+        userId: user.id,
+        currency: "USD",
+      },
+    });
+  }
 
-	let userSettings =await prisma.userSetting.findUnique({
-		where:{
-			userId:user.id
-		}
-	});
+  //revaidate the home page that uses that currency'
+  revalidatePath("/");
 
-	if(!userSettings){
-		userSettings=await prisma.userSetting.create({
-			data:{
-				userId:user.id,
-				currency:"USD",
-			}
-		});
-
-	}
-
-	//revaidate the home page that uses that currency'
-	revalidatePath("/");
-	return Response.json(userSettings);
-
+  console.log("user-settings",userSettings)
+  return Response.json(userSettings);
 }
+ 

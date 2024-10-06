@@ -21,7 +21,7 @@ export function LogoMoblie() {
         className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-3xl font-bold
 		leading-tight tracking-tighter text-transparent"
       >
-        Budget Traker
+        Budget Tracker
       </p>
     </a>
   );
