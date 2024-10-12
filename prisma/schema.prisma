@@ -48,18 +48,17 @@ model MonthHistory{
   month Int
   year Int
   income Float
-  expence Float
+  expense Float
 
   @@id([day,month,year,userId])
 }
 
 model yearHistory{
   userId String
-  day Int
   month Int
   year Int
   income Float
-  expence Float
+  expense Float
 
   @@id([month,year,userId])
 }
