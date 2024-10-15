@@ -42,11 +42,11 @@ function Overview({ userSettings }: { userSettings: UserSetting }) {
           from={dateRange.from}
           to={dateRange.to}
         />
-		<CategoriesStats
-		userSettings={userSettings}
-		from={dateRange.from}
-		to={dateRange.to}
-		/>
+        <CategoriesStats
+          userSettings={userSettings}
+          from={dateRange.from}
+          to={dateRange.to}
+        />
       </div>
     </>
   );
