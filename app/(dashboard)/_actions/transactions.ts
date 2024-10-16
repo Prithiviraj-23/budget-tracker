@@ -22,7 +22,7 @@ export async function CreateTransaction(form: CreateTransactionSchematype) {
 
   const { amount, date, category, description, type } = parseBody.data;
 
-  console.log(parseBody.data.date);
+  //console.log(parseBody.data.date);
 
   const categoryRow = await prisma.category.findFirst({
     where: {
@@ -51,7 +51,7 @@ export async function CreateTransaction(form: CreateTransactionSchematype) {
       where: {
         day_month_year_userId: {
           day: date.getUTCDate(),
-          month: date.getUTCMonth(),
+          month: date.getUTCMonth() + 1,
           year: date.getUTCFullYear(),
           userId: user.id,
         },
@@ -59,7 +59,7 @@ export async function CreateTransaction(form: CreateTransactionSchematype) {
       create: {
         userId: user.id,
         day: date.getUTCDate(),
-        month: date.getUTCMonth(),
+        month: date.getUTCMonth() + 1,
         year: date.getUTCFullYear(),
         expense: type === "expense" ? amount : 0,
         income: type === "income" ? amount : 0,
@@ -77,14 +77,14 @@ export async function CreateTransaction(form: CreateTransactionSchematype) {
     prisma.yearHistory.upsert({
       where: {
         month_year_userId: {
-          month: date.getUTCMonth()+1,
+          month: date.getUTCMonth() + 1,
           year: date.getUTCFullYear(),
           userId: user.id,
         },
       },
       create: {
         userId: user.id,
-        month: date.getUTCMonth()+1,
+        month: date.getUTCMonth() + 1,
         year: date.getUTCFullYear(),
         expense: type === "expense" ? amount : 0,
         income: type === "income" ? amount : 0,
