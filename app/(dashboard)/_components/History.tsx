@@ -30,10 +30,11 @@ function History({ userSettings }: { userSettings: UserSetting }) {
   });
 
   const formatter = useMemo(() => {
+    console.log("Formatter recalculated");
     return GetFormatterForCurrency(userSettings.currency);
   }, [userSettings.currency]);
 
-  const historyDataQuery = useQuery<getHistoryDataResponseType>({
+  const historyDataQuery = useQuery({
     queryKey: ["overview", "history", timeframe, period],
     queryFn: () =>
       fetch(
@@ -189,7 +190,6 @@ function History({ userSettings }: { userSettings: UserSetting }) {
 export default History;
 
 function CustomTooltip({ active, payload, formatter }: any) {
-  
   if (!active || !payload || payload.length === 0) return null;
 
   const data = payload[0].payload;
@@ -233,8 +233,11 @@ function CustomTooltip({ active, payload, formatter }: any) {
     formatter: Intl.NumberFormat;
     bgColor: string;
   }) {
+
+
     const formattingFn = useCallback(
       (value: number) => {
+        console.log("formattingFn recalculated");
         return formatter.format(value);
       },
       [formatter]
