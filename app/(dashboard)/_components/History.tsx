@@ -233,8 +233,6 @@ function CustomTooltip({ active, payload, formatter }: any) {
     formatter: Intl.NumberFormat;
     bgColor: string;
   }) {
-
-
     const formattingFn = useCallback(
       (value: number) => {
         console.log("formattingFn recalculated");
@@ -246,6 +244,7 @@ function CustomTooltip({ active, payload, formatter }: any) {
     return (
       <div className="flex items-center gsp-2">
         <div className={cn("h-4 w-2 rounded-full", bgColor)} />
+
         <div className="flex w-full justify-between">
           <p className="text-sm text-muted-foreground">{label}</p>
           <div className={cn("text-sm font-bold", textColor)}>
