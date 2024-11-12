@@ -36,7 +36,7 @@ export async function GET(request: Request) {
     month: queryParams.data.month,
     year: queryParams.data.year,
   });
-  // console.log(data)
+  // console.log("data", data);
 
   return Response.json(data);
 }
@@ -139,7 +139,7 @@ async function getMonthHistoryData(
     }
     history.push({
       year,
-      month: i,
+      month,
       expense,
       income,
       day: i,
