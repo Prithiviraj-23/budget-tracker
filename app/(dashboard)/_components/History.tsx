@@ -25,7 +25,7 @@ import CountUp from "react-countup";
 function History({ userSettings }: { userSettings: UserSetting }) {
   const [timeframe, setTimeframe] = useState<Timeframe>("month");
   const [period, setPeriod] = useState<Period>({
-    month: new Date().getMonth() + 1,
+    month: new Date().getMonth(),
     year: new Date().getFullYear(),
   });
   //console.log("period -month : in csr", new Date());
