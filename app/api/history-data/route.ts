@@ -36,7 +36,7 @@ export async function GET(request: Request) {
     month: queryParams.data.month,
     year: queryParams.data.year,
   });
-  // console.log("data", data);
+  console.log("data", data);
 
   return Response.json(data);
 }
