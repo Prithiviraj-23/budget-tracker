@@ -18,7 +18,6 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { getHistoryDataResponseType } from "@/app/api/history-data/route";
 import { cn } from "@/lib/utils";
 import CountUp from "react-countup";
 

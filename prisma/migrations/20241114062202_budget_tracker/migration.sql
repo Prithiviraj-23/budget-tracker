@@ -34,7 +34,7 @@ CREATE TABLE "MonthHistory" (
     "month" INTEGER NOT NULL,
     "year" INTEGER NOT NULL,
     "income" REAL NOT NULL,
-    "expence" REAL NOT NULL,
+    "expense" REAL NOT NULL,
 
     PRIMARY KEY ("day", "month", "year", "userId")
 );
@@ -42,11 +42,10 @@ CREATE TABLE "MonthHistory" (
 -- CreateTable
 CREATE TABLE "yearHistory" (
     "userId" TEXT NOT NULL,
-    "day" INTEGER NOT NULL,
     "month" INTEGER NOT NULL,
     "year" INTEGER NOT NULL,
     "income" REAL NOT NULL,
-    "expence" REAL NOT NULL,
+    "expense" REAL NOT NULL,
 
     PRIMARY KEY ("month", "year", "userId")
 );

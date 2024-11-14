@@ -1,13 +1,12 @@
 import prisma from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { use } from "react";
 import { z } from "zod";
 
 export async function GET(request: Request) {
-  const user =await currentUser();
+  const user = await currentUser();
 
-  if (user===null) redirect("/sign-in");
+  if (user === null) redirect("/sign-in");
 
   const { searchParams } = new URL(request.url);
 
@@ -28,13 +27,13 @@ export async function GET(request: Request) {
   const category = await prisma.category.findMany({
     where: {
       userId: user.id,
-	  ...(type &&{type})
+      ...(type && { type }),
     },
 
-	orderBy:{
-		name:"asc"
-	},
+    orderBy: {
+      name: "asc",
+    },
   });
 
-  return Response.json(category)
+  return Response.json(category);
 }

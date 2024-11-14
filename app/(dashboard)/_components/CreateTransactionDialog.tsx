@@ -24,7 +24,7 @@ import {
   CreateTransactionSchema,
   CreateTransactionSchematype,
 } from "@/schema/transaction";
-import react, { ReactNode, useCallback, useState } from "react";
+import { ReactNode, useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
@@ -36,7 +36,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
-import { CalendarIcon, FileChartColumnIncreasing, Loader2 } from "lucide-react";
+import { CalendarIcon, Loader2 } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CreateTransaction } from "../_actions/transactions";
@@ -158,7 +158,7 @@ function CreateTransactionDialog({ trigger, type }: Props) {
               <FormField
                 control={form.control}
                 name="category"
-                render={({ field }) => (
+                render={({}) => (
                   <FormItem>
                     <FormLabel className="flex flex-col">Category</FormLabel>
                     <FormControl>
@@ -203,7 +203,7 @@ function CreateTransactionDialog({ trigger, type }: Props) {
                           mode={"single"}
                           selected={field.value}
                           onSelect={(value) => {
-                            if (!value) return; 
+                            if (!value) return;
                             field.onChange(value);
                           }}
                           initialFocus

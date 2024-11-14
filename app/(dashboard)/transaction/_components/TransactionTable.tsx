@@ -29,13 +29,10 @@ import { DataTableColumnHeader } from "@/components/datatable/ColumnHeader";
 import { GetTransactionHistoryType } from "@/app/api/transaction-history/route";
 import { cn } from "@/lib/utils";
 import { DataTableFacetedFilter } from "@/components/datatable/FacetedFilters";
-import { Value } from "@radix-ui/react-select";
 import { DataTableViewOptions } from "@/components/datatable/ColumnToggle";
-import { Button } from "@/components/ui/button";
 
 import { download, generateCsv, mkConfig } from "export-to-csv";
-import { Download, DownloadIcon, MoreHorizontal } from "lucide-react";
-import { Dropdown } from "react-day-picker";
+import { DownloadIcon, MoreHorizontal } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -44,8 +41,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { DropdownMenuIcon, TrashIcon } from "@radix-ui/react-icons";
+import { TrashIcon } from "@radix-ui/react-icons";
 import DeleteTransactionDialog from "./DeleteTransactionDialog";
+import { Button } from "@/components/ui/button";
 interface Props {
   from: Date;
   to: Date;

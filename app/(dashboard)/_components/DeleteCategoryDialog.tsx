@@ -5,7 +5,6 @@ import React, { ReactNode } from "react";
 import { DeleteCategory } from "../_actions/categories";
 import { toast } from "sonner";
 import { Category } from "@prisma/client";
-import { Alert } from "@/components/ui/alert";
 import {
   AlertDialog,
   AlertDialogAction,

@@ -19,22 +19,21 @@ import { Category } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import React, { useCallback, useEffect, useState } from "react";
 import CreateCategoryDialog from "./CreateCategoryDialog";
-import { currentUser } from "@clerk/nextjs/server";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Props {
   type: TransactionType;
-  onChange:(value:string)=>void;
+  onChange: (value: string) => void;
 }
-function CategoryPicker({ type,onChange }: Props) {
+function CategoryPicker({ type, onChange }: Props) {
   const [open, setOpen] = useState(false);
   const [value, setvalue] = useState("");
 
-  useEffect(()=>{
-    if(!value)return;
-    onChange(value)
-  },[onChange,value]);
+  useEffect(() => {
+    if (!value) return;
+    onChange(value);
+  }, [onChange, value]);
 
   const categoriesQuery = useQuery({
     queryKey: ["categories", type],
@@ -46,13 +45,16 @@ function CategoryPicker({ type,onChange }: Props) {
     (category: Category) => category.name === value
   );
 
-  const sucessCallback = useCallback((Category: Category) => {
-    setvalue(Category.name);
-    setOpen((prev) => !prev);
-  },[setvalue,setOpen]);
+  const sucessCallback = useCallback(
+    (Category: Category) => {
+      setvalue(Category.name);
+      setOpen((prev) => !prev);
+    },
+    [setvalue, setOpen]
+  );
 
   return (
-    <Popover open={open} onOpenChange={setOpen} >
+    <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
           variant={"outline"}
@@ -75,10 +77,7 @@ function CategoryPicker({ type,onChange }: Props) {
           }}
         >
           <CommandInput placeholder="search category.." />
-          <CreateCategoryDialog
-            type={type}
-            SuccessCallback={sucessCallback}
-          />
+          <CreateCategoryDialog type={type} SuccessCallback={sucessCallback} />
           <CommandEmpty>
             <p>Category Not Found</p>
             <p className="text-xs text-muted-foreground">

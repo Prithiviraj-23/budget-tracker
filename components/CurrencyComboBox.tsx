@@ -35,15 +35,14 @@ export function CurrencyComboBox() {
 
   const userSettings = useQuery<UserSetting>({
     queryKey: ["userSettings"],
-    queryFn: () => fetch("/api/user-settings").then((res) =>{
-      return  res.json()
-    }),
+    queryFn: () =>
+      fetch("/api/user-settings").then((res) => {
+        return res.json();
+      }),
   });
 
-
   useEffect(() => {
-   
-        if (!userSettings.data ) return;
+    if (!userSettings.data) return;
 
     const userCurrency = Currencies.find(
       (currency) => currency.value === userSettings.data.currency
@@ -51,28 +50,23 @@ export function CurrencyComboBox() {
 
     if (userCurrency) setSelectedOption(userCurrency);
     console.log("Updated selectedOption in useEffect:", selectedOption);
-
   }, [userSettings.data]);
 
   const mutation = useMutation({
     mutationFn: UpdateUserCurrency,
     onSuccess: (data: UserSetting) => {
-      
       toast.success(`Currency update successful 🎉`, {
         id: "update-currency",
       });
 
-      console.log("mutation-data",data);
+      console.log("mutation-data", data);
 
-      
       setSelectedOption(
         Currencies.find((c) => c.value === data.currency) || null
       );
-      console.log("mutation-selectedOption",selectedOption);
-    
-
+      console.log("mutation-selectedOption", selectedOption);
     },
-    onError: (data: UserSetting) => {
+    onError: () => {
       toast.error("Something went Wrong", {
         id: "update-currency",
       });
